@@ -91,4 +91,4 @@ export default function DataInputStep({ accountType, onSubmit, onBack }) {
       </div>
     </form>
   );
-}
+}  

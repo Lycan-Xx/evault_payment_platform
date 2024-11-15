@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 export default function StepIndicator({ currentStep }) {
   const steps = [
-    { number: 1, label: 'Account Type' },
-    { number: 2, label: 'Your Details' },
-    { number: 3, label: 'Confirmation' },
+    { number: 1 },
+    { number: 2 },
+    { number: 3 },
   ];
 
   return (
@@ -21,10 +21,7 @@ export default function StepIndicator({ currentStep }) {
                   'bg-gray-200 text-gray-600': currentStep < step.number,
                 }
               )}
-            >
-              {step.number}
-            </div>
-            <span className="text-xs mt-1">{step.label}</span>
+            />
           </div>
           {index < steps.length - 1 && (
             <div
