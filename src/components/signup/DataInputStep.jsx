@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 export default function DataInputStep({ accountType, onSubmit, onBack }) {
@@ -9,10 +10,11 @@ export default function DataInputStep({ accountType, onSubmit, onBack }) {
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -21,74 +23,63 @@ export default function DataInputStep({ accountType, onSubmit, onBack }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Full Name
-        </label>
+    <div>
+      <h3 className="text-lg font-medium text-center text-gray-700 mb-6">
+        {accountType} Details
+      </h3>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           name="name"
-          required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Full Name"
           value={formData.name}
           onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg"
+          required
         />
-      </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Email
-        </label>
         <input
           type="email"
           name="email"
-          required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg"
+          required
         />
-      </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Password
-        </label>
         <input
           type="password"
           name="password"
-          required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Password"
           value={formData.password}
           onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg"
+          required
         />
-      </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Phone Number
-        </label>
         <input
           type="tel"
           name="phone"
-          required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
+          className="w-full px-4 py-2 border rounded-lg"
+          required
         />
-      </div>
-      <div className="flex justify-between pt-4">
-        <button
-          type="button"
-          onClick={onBack}
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Back
-        </button>
-        <button
-          type="submit"
-          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Continue
-        </button>
-      </div>
-    </form>
+        <div className="flex justify-between">
+          <button 
+            type="button"
+            onClick={onBack}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
+          >
+            Back
+          </button>
+          <button 
+            type="submit"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          >
+            Continue
+          </button>
+        </div>
+      </form>
+    </div>
   );
-}  
+}

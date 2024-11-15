@@ -1,36 +1,36 @@
+
 import React from 'react';
-import classNames from 'classnames';
 
-export default function StepIndicator({ currentStep }) {
-  const steps = [
-    { number: 1 },
-    { number: 2 },
-    { number: 3 },
-  ];
-
+export default function StepIndicator({ currentStep, steps }) {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between items-center mb-8 relative">
       {steps.map((step, index) => (
-        <div key={step.number} className="flex items-center">
-          <div className="flex flex-col items-center">
-            <div
-              className={classNames(
-                'w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium',
-                {
-                  'bg-blue-600 text-white': currentStep >= step.number,
-                  'bg-gray-200 text-gray-600': currentStep < step.number,
-                }
-              )}
-            />
+        <div 
+          key={step.id} 
+          className="flex flex-col items-center"
+        >
+          <div 
+            className={`
+              w-12 h-12 rounded-full flex items-center justify-center 
+              ${currentStep >= step.id 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-200 text-gray-500'}
+              transition-all duration-300 ease-in-out
+              mb-2 z-10
+            `}
+          >
+            {step.icon}
           </div>
-          {index < steps.length - 1 && (
-            <div
-              className={classNames('h-0.5 w-16 mx-2', {
-                'bg-blue-600': currentStep > step.number,
-                'bg-gray-200': currentStep <= step.number,
-              })}
-            />
-          )}
+          <span 
+            className={`
+              text-xs font-medium 
+              ${currentStep >= step.id 
+                ? 'text-blue-600' 
+                : 'text-gray-400'}
+            `}
+          >
+            {step.label}
+          </span>
         </div>
       ))}
     </div>
