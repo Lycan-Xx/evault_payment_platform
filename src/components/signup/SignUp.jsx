@@ -9,24 +9,24 @@ function AccountTypeStep({ onSelect }) {
       <h3 className="text-xl font-medium text-center text-gray-700">
         Choose an account type
       </h3>
-      <div className="flex justify-center space-x-4">
+      <div className="flex justify-center space-x-4 gap-6 ">
         <button
           onClick={() => onSelect('Personal')}
-          className="p-6 w-[180px] border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors flex flex-col items-center"
+          className="p-6 w-[180px]  border-2 border-gray-200 rounded-2xl hover:border-[#025798] focus:outline-none focus:ring-2 focus:ring-[#025798] transition-colors flex flex-col items-center"
         >
           <UserPlus className="mb-2" size={40} strokeWidth={1.5} />
-          <h4 className="text-lg font-medium mb-2 text-gray-800">Personal</h4>
-          <p className="text-sm text-gray-600 text-center">
+          <h4 className="text-xl font-medium mb-2 text-gray-800">Personal</h4>
+          <p className="text-lg text-gray-600 text-center">
             For individual use and personal finances
           </p>
         </button>
         <button
           onClick={() => onSelect('Business')}
-          className="p-6 w-[180px] border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors flex flex-col items-center"
+          className="p-6 w-[180px] border-2 border-gray-200 rounded-2xl hover:border-[#025798] focus:outline-none focus:ring-2 focus:ring-[#025798] transition-colors flex flex-col items-center"
         >
           <Mail className="mb-2" size={40} strokeWidth={1.5} />
-          <h4 className="text-lg font-medium mb-2 text-gray-800">Business</h4>
-          <p className="text-sm text-gray-600 text-center">
+          <h4 className="text-xl font-medium mb-2 text-gray-800">Business</h4>
+          <p className="text-lg text-gray-600 text-center">
             For companies and business operations
           </p>
         </button>
@@ -136,7 +136,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
                 placeholder="First Name"
                 value={formData.firstname}
                 onChange={handleChange}
-                className="w-1/2 px-4 py-2 border rounded-lg"
+                className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg"
                 required
               />
               <input
@@ -145,7 +145,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
                 placeholder="Last Name"
                 value={formData.lastname}
                 onChange={handleChange}
-                className="w-1/2 px-4 py-2 border rounded-lg"
+                className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg"
                 required
               />
             </div>
@@ -156,7 +156,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.email}</p>
@@ -166,7 +166,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Phone Number"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.phone}</p>
@@ -175,7 +175,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
                 name="sex"
                 value={formData.sex}
                 onChange={handleChange}
-                className="w-1/2 px-4 py-2 border rounded-lg"
+                className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg"
                 required
               >
                 <option value="">Select Sex</option>
@@ -186,7 +186,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className="w-1/2 px-4 py-2 border rounded-lg"
+                className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg"
                 required
               >
                 <option value="">State of Origin</option>
@@ -201,7 +201,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               name="dob"
               value={formData.dob}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.dob}</p>
@@ -211,14 +211,36 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Home Address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.address}</p>
+
+
+            {/* --------------------------------------------- */}
+
+            <div className="flex justify-between">
+              <button
+                type="button"
+                onClick={handleBackButton}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+              >
+                Continue
+              </button>
+            </div>
+
+{/* --------------------------------- */}
+
             <button
               type="button"
               onClick={handleContinue}
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
+              className="w-1/4 px-4 py-2 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
             >
               Continue
             </button>
@@ -232,7 +254,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <input
@@ -241,7 +263,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Verify Password"
               value={formData.verifyPassword}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <input
@@ -250,7 +272,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Vaultphrase/Pin"
               value={formData.vaultPhrase}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <input
@@ -259,7 +281,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Referral Code"
               value={formData.referralCode}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
             />
             <div className="flex justify-between">
               <button

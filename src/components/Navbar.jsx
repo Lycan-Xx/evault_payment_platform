@@ -9,7 +9,7 @@
           <img src={logo} alt="logo" className='h-[7rem] w-auto' />
 
           <div className="flex flex-col ml-1 mb-8">
-            <span className="text-[3rem] font-bold text-[#2B7A9E] mt-4">eVault</span>
+            <span className="text-[3rem] font-bold text-[#025798] mt-4">eVault</span>
 
             <div className="flex space-x-6 mt-2">
               <button className="flex items-center text-gray-600 hover:text-[#2B7A9E] text-sm font-medium">
@@ -27,20 +27,20 @@
             </div>
           </div>
 
-          <div className="absolute top-4 right-4 flex items-center space-x-3">
+          <div className="absolute top-4 right-4 flex items-center space-x-4">
             <button 
-              className={classNames("text-gray-600 hover:text-[#2B7A9E] px-4 py-1.5 rounded-md text-2xl border border-gray-300")} 
+              className=" bg-[#025798] text-white hover:bg-white w-2/6 hover:text-[#025798] px-6 py-2 rounded-xl text-[1.2rem] border-[1.5px] border-[#025798] transition duration-400 ease-in"
               onClick={() => onNavigate('sign-in')}
             >
-              Signin
+              Sign in
             </button>
             <button 
-              className="text-gray-600 hover:text-[#2B7A9E] px-4 py-1.5 rounded-md text-2xl border border-gray-300"
+              className=" bg-[#025798] text-white whitespace-nowrap hover:bg-white w-2/6 hover:text-[#025798] px-6 py-2 rounded-xl text-[1.2rem] border-[1.5px] border-[#025798] transition duration-400 ease-in"
               onClick={() => onNavigate('sign-up')}
             >
-              Signup
+              Sign up
             </button>
-            <button className="bg-[#2B7A9E] text-white px-4 py-1.5 rounded-md text-2xl hover:bg-[#236A8E]">
+            <button className="bg-white text-[#025798] px-6 py-2 rounded-xl text-[1.2rem] hover:bg-[#025798] hover:text-white border-[1.5px] border-[#025798] transition duration-700">
               Download
             </button>
           </div>

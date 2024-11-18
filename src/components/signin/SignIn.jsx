@@ -59,7 +59,7 @@ export default function SignIn({ onContinue }) {
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full px-4 py-3 text-[1.2rem] border-2 border-[#025798] rounded-xl"
                 required
               />
             </div>
@@ -69,7 +69,7 @@ export default function SignIn({ onContinue }) {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg pr-10"
+                className="w-full px-4 py-3 text-[1.2rem] border-2 border-[#025798] rounded-xl pr-10"
                 required
               />
               <button
@@ -79,21 +79,25 @@ export default function SignIn({ onContinue }) {
               >
                 {showPassword ? <EyeOff size={20} className="text-gray-400" /> : <Eye size={20} className="text-gray-400" />}
               </button>
-              <a href="#" className="text-sm text-blue-500 hover:underline float-right mt-2">
+              <a href="#" className="text-lg text-[#025798] hover:underline float-right mt-12">
                 Forgot password?
               </a>
             </div>
             <button 
               type="submit"
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
+              className="w-1/4 px-6 py-3 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
             >
               Sign In
             </button>
           </form>
-          <div className="text-center mt-4">
-            <span className="text-sm text-gray-600">New to eVault? </span>
-            <a href="#" className="text-sm text-blue-500 hover:underline">
+
+
+          <div className="text-center mt-12">
+            <span className="text-lg text-gray-700">New to eVault? </span>
+            <a href="#" className="text-[1.2rem] text-[#025798] pl-6">
+              <button className='w-1/4 px-6 py-3 rounded-lg whitespace-nowrap bg-white border-2 border-[#025798] text-lg hover:text-white hover:bg-[#025798] transition duration-300 ease-linear'>
               Sign Up
+              </button>
             </a>
           </div>
         </div>

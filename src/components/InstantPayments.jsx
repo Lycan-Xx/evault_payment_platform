@@ -3,11 +3,11 @@ import { Search, SlidersHorizontal, Banknote, Phone, Wifi, Building2, Car } from
 
 const ServiceCard = ({ icon, title }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
-      <div className="mb-2 text-[#2B7A9E]">
+    <div className="bg-white rounded-lg shadow-2xl p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+      <div className="mb-2 text-[#025798]">
         {icon}
       </div>
-      <h3 className="text-sm font-medium text-gray-700 text-center">
+      <h3 className="text-1xl font-medium text-gray-700 text-center">
         {title}
       </h3>
     </div>
@@ -29,13 +29,13 @@ const InstantPayments = () => {
 
   return (
       <div className="w-full max-w-[36rem]"> {/* Increased max-width */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8"> {/* Enhanced shadow and padding */}
-          <h2 className="text-3xl font-bold text-[#2B7A9E] mb-8 text-center"> 
-            Instant Payment Services
+        <div className="bg-white rounded-2xl shadow-2xl p-8 "> {/* Enhanced shadow and padding */}
+          <h2 className="text-3xl font-bold text-[#025798] mb-8 text-left"> 
+            Instant Payment
           </h2>
           
           {/* Enhanced Search Bar */}
-          <div className="relative mb-8">
+          <div className="relative mb-8 py-4">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
               <Search className="w-6 h-6 text-gray-400" />
             </div>
@@ -43,11 +43,11 @@ const InstantPayments = () => {
             <input 
               type="text" 
               placeholder="Search for Agent / Vendor" 
-              className="w-full p-4 pl-12 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#2B7A9E] focus:border-transparent transition duration-300 ease-in-out pr-12" 
+              className="w-full p-2 pl-12 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#025798] focus:border-transparent transition duration-300 ease-in-out pr-12" 
             />
 
             <button className="absolute right-4 top-1/2 -translate-y-1/2">
-              <SlidersHorizontal className="w-6 h-6 text-gray-400 hover:text-[#2B7A9E] transition" />
+              <SlidersHorizontal className="w-6 h-6 text-gray-400 hover:text-[#025798] transition" />
             </button>
           </div>
           
