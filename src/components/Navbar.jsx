@@ -1,6 +1,6 @@
   import React from 'react';
   import classNames from 'classnames'
-  import logo from './assets/evault_main_logo.png';
+  import logo from './assets/logo.jpg';
 
   const Navbar = ({ onNavigate }) => {
     return (

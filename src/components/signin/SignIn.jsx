@@ -85,7 +85,7 @@ export default function SignIn({ onContinue }) {
             </div>
             <button 
               type="submit"
-              className="w-1/4 px-6 py-3 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
+              className="w-1/4 px-6 py-3 whitespace-nowrap bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
             >
               Sign In
             </button>

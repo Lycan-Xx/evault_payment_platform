@@ -5,11 +5,11 @@ import StepIndicator from './StepIndicator';
 // Account Type Step Component
 function AccountTypeStep({ onSelect }) {
   return (
-    <div className={`space-y-4 transition-opacity duration-500`}>
+    <div className={`space-y-4 transition-opacity duration-500 mb-4`}>
       <h3 className="text-xl font-medium text-center text-gray-700">
-        Choose an account type
+        Please Choose an account type
       </h3>
-      <div className="flex justify-center space-x-4 gap-6 ">
+      <div className="flex justify-center space-x-4 gap-6">
         <button
           onClick={() => onSelect('Personal')}
           className="p-6 w-[180px]  border-2 border-gray-200 rounded-2xl hover:border-[#025798] focus:outline-none focus:ring-2 focus:ring-[#025798] transition-colors flex flex-col items-center"
@@ -223,27 +223,22 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               <button
                 type="button"
                 onClick={handleBackButton}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
+                className="w-1/4 px-4 py-2 mt-8 text-[1.2rem] border ease-linear bg-gray-300 text-gray-800 rounded-lg"
               >
                 Cancel
               </button>
               <button
-                type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-              >
+                type="button"
+                onClick={handleContinue}
+                className="w-1/4 px-4 py-2 mt-8 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
+                >
                 Continue
               </button>
             </div>
 
 {/* --------------------------------- */}
 
-            <button
-              type="button"
-              onClick={handleContinue}
-              className="w-1/4 px-4 py-2 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
-            >
-              Continue
-            </button>
+            
           </>
         )}
         {(accountType === 'Personal' && formData.step === 2) || (accountType === 'Business' && formData.step === 2) ? (
@@ -283,21 +278,24 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-400 rounded-lg"
             />
+
+
             <div className="flex justify-between">
               <button
                 type="button"
                 onClick={handleBackButton}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
+                className="w-1/4 px-4 py-2 mt-8 text-[1.2rem] border ease-linear bg-gray-300 text-gray-800 rounded-lg"
               >
                 Back
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                className="w-1/4 px-4 py-2 mt-8 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
               >
                 Complete
               </button>
             </div>
+
           </>
         ) : accountType === 'Business' && formData.step === 1 && (
           <>
@@ -307,7 +305,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="Business Name"
               value={formData.businessName}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.businessName}</p>
@@ -318,7 +316,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
 			  placeholder="Email Address"
 			  value={formData.email}
 			  onChange={handleChange}
-			  className="w-full px-4 py-2 border rounded-lg"
+        className="w-full px-4 py-2 border border-gray-400 rounded-lg"
 			  required
              />
 			 <p className="text-red-500">{errors.email}</p>
@@ -329,7 +327,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="RC - Number"
               value={formData.rcNumber}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.rcNumber}</p>
@@ -339,17 +337,29 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
               placeholder="NIN"
               value={formData.nin}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full px-4 py-2 border border-gray-400 rounded-lg"
               required
             />
             <p className="text-red-500">{errors.nin}</p>
-            <button
-              type="button"
-              onClick={handleContinue}
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
-            >
-              Continue
-            </button>
+
+
+            <div className="flex justify-between">
+              <button
+                type="button"
+                onClick={handleBackButton}
+                className="w-1/4 px-4 py-2 mt-8 text-[1.2rem] border ease-linear bg-gray-300 text-gray-800 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleContinue}
+                className="w-1/4 px-4 py-2 mt-8 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
+                >
+                Continue
+              </button>
+            </div>
+            
           </>
         )}
       </form>
@@ -360,7 +370,7 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
 // Success Step Component
 function SuccessStep({ accountType }) {
   return (
-    <div className="text-center py-8">
+    <div className="text-center py-8 transition-opacity duration-500">
       <Check className="mx-auto mb-6 text-green-500" size={64} />
       <h3 className="text-2xl font-bold text-gray-900 mb-2">
         Account Created Successfully!
@@ -373,8 +383,8 @@ function SuccessStep({ accountType }) {
 		Sign in to access your account.
 	  </p>
       <button
-        className="mt-6 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        onClick={() => window.location.reload()}
+                className="w-1/4 px-4 py-2 mt-8 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
+				onClick={() => window.location.reload()}
       >
         Sign In
       </button>
