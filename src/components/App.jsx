@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTransition, animated } from '@react-spring/web';
 import { MessageCircle, Headphones } from 'lucide-react';
 import Navbar from './Navbar';
 import Slider from './Slider';
@@ -11,19 +12,26 @@ import Dashboard from './Dashboard/Dashboard';
 function App() {
   const [currentView, setCurrentView] = useState('instant-payments');
 
+  const transitions = useTransition(currentView, {
+    from: { opacity: 0, transform: 'translate3d(50%,0,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
+    config: { mass: 1, tension: 200, friction: 20 },
+  });
+
   const handleNavigation = (view) => {
     setTimeout(() => {
       setCurrentView(view);
     }, 500);
   };
 
-  const renderRightColumn = () => {
-    switch (currentView) {
+  const renderRightColumn = (view) => {
+    switch (view) {
       case 'configure-security':
         return (
           <ConfigureSecurity
-            onSkip={() => handleNavigation('dashboard')} // Skip loads Dashboard
-            onComplete={() => handleNavigation('dashboard')} // Completion also loads Dashboard
+            onSkip={() => handleNavigation('dashboard')}
+            onComplete={() => handleNavigation('dashboard')}
           />
         );
       case 'sign-in':
@@ -39,8 +47,7 @@ function App() {
         return <InstantPayments />;
     }
   };
-  
-  
+
   return (
     <div className="min-h-screen flex flex-col transition-opacity duration-500">
       {currentView !== 'dashboard' && (
@@ -48,15 +55,22 @@ function App() {
           <Navbar onNavigate={handleNavigation} currentView={currentView} />
 
           <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 py-12">
-            {/* Left Column: Static Slider */}
             <div className="block items-center justify-start pl-8 lg:pl-16 pt-[120px]">
+              <div className="flex space-x-6 mb-24 mt-8">
+                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">Banking</p>
+                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">Payments</p>
+                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">Vault</p>
+              </div>
               <Slider />
             </div>
 
-            {/* Right Column: Dynamic Content */}
-            <div className="flex items-center justify-center">
-              {renderRightColumn()}
-            </div>
+            <div className="relative w-full h-full">
+  {transitions((style, item) => (
+    <animated.div style={{ ...style, position: 'absolute', width: '100%', height: '100%' }}>
+      {renderRightColumn(item)}
+    </animated.div>
+  ))}
+</div>
           </main>
 
           <footer className="bg-[#2B7A9E] text-white py-4">
@@ -77,7 +91,6 @@ function App() {
         </>
       )}
 
-      {/* Render Dashboard when currentView is 'dashboard' */}
       {currentView === 'dashboard' && <Dashboard />}
     </div>
   );

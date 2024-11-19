@@ -5,10 +5,16 @@ import {
   CreditCard,
   Send,
   ArrowDownToLine,
+  PhoneCall,
   PiggyBank,
+  Globe,
   ShieldCheck,
+  Train,
+  Building,
   Bell,
+  Receipt,
   User,
+  SatelliteDishIcon,
   Menu,
   ArrowRightLeft, // Transfer icon
   Layers, // Withdraw icon
@@ -118,13 +124,13 @@ export default function Dashboard() {
   };
 
   const services = [
-    { title: "Instant Payment", description: "Pay instantly", icon: Menu },
-    { title: "Airtime Recharge", description: "Top up airtime", icon: Menu },
-    { title: "Data Bundles", description: "Purchase data", icon: Menu },
-    { title: "School Fees Payment", description: "Pay school fees", icon: Menu },
-    { title: "Remita Payments", description: "Remita services", icon: Menu },
-    { title: "Cable Subscriptions", description: "Subscribe to cable", icon: Menu },
-    { title: "Transport Bookings", description: "Book transportation", icon: Menu },
+    { title: "Instant Payment", description: "Pay instantly", icon: Wallet },
+    { title: "Airtime Recharge", description: "Top up airtime", icon: PhoneCall },
+    { title: "Data Bundles", description: "Purchase data", icon: Globe },
+    { title: "School Fees Payment", description: "Pay school fees", icon: Building },
+    { title: "Remita Payments", description: "Remita services", icon: Receipt },
+    { title: "Cable Subscriptions", description: "Subscribe to cable", icon: SatelliteDishIcon },
+    { title: "Transport Bookings", description: "Book transportation", icon: Train },
   ];
 
   const toggleTab = (tab) => {

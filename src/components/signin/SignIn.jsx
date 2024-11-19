@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail } from 'lucide-react';
 
-// SuccessStep component for the successful login message
 function SuccessStep({ onContinue }) {
   return (
     <div className="text-center">
@@ -11,7 +10,6 @@ function SuccessStep({ onContinue }) {
         You have successfully signed in to your account.
       </p>
       <div className='pt-8'>
-        {/* Button to trigger the onContinue function passed from App.jsx */}
         <button
           onClick={onContinue}
           className="px-4 py-3 bg-[#2B7A9E] text-white rounded-lg hover:bg-[#236785] transition-colors"
@@ -23,7 +21,7 @@ function SuccessStep({ onContinue }) {
   );
 }
 
-export default function SignIn({ onContinue }) {
+export default function SignIn({ onContinue, onSignUp }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,10 +32,9 @@ export default function SignIn({ onContinue }) {
     SUCCESS: 2,
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentStep(Steps.SUCCESS); // Proceed to the success step after login
+    setCurrentStep(Steps.SUCCESS);
   };
 
   return (
@@ -46,7 +43,6 @@ export default function SignIn({ onContinue }) {
         Welcome Back
       </h2>
 
-      {/* Render login form */}
       {currentStep === Steps.LOGIN && (
         <div>
           <h3 className="text-lg font-medium text-center text-gray-700 mb-6">
@@ -91,19 +87,18 @@ export default function SignIn({ onContinue }) {
             </button>
           </form>
 
-
           <div className="text-center mt-12">
             <span className="text-lg text-gray-700">New to eVault? </span>
-            <a href="#" className="text-[1.2rem] text-[#025798] pl-6">
-              <button className='w-1/4 px-6 py-3 rounded-lg whitespace-nowrap bg-white border-2 border-[#025798] text-lg hover:text-white hover:bg-[#025798] transition duration-300 ease-linear'>
+            <button
+              className='w-1/4 px-4 py-3 ml-6 rounded-lg whitespace-nowrap bg-white border-2 border-[#025798] text-lg hover:text-white hover:bg-[#025798] transition duration-300 ease-linear'
+              onClick={onSignUp}
+            >
               Sign Up
-              </button>
-            </a>
+            </button>
           </div>
         </div>
       )}
 
-      {/* Render success message */}
       {currentStep === Steps.SUCCESS && (
         <SuccessStep onContinue={onContinue} />
       )}
