@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { CheckCircle } from 'lucide-react';
 import SecurityStep from './SecurityStep';
 
@@ -20,9 +19,5 @@ const SuccessStep = ({ onComplete }) => (
     </button>
   </SecurityStep>
 );
-
-SuccessStep.propTypes = {
-  onComplete: PropTypes.func.isRequired
-};
 
 export default SuccessStep;

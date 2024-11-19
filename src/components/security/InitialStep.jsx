@@ -18,13 +18,13 @@ const InitialStep = ({ onNext, onSkip }) => (
     </div>
     <div className="flex justify-between w-full mt-8">
       <button
-        onClick={onSkip}
+        onClick={() => onSkip()} // Ensure this calls the onSkip prop
         className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors"
       >
         Skip for now
       </button>
       <button
-        onClick={onNext}
+        onClick={() => onNext()} // Ensure this calls the onNext prop
         className="px-6 py-2 bg-[#2B7A9E] text-white rounded-lg hover:bg-[#236785] transition-colors flex items-center gap-2"
       >
         <Shield className="w-4 h-4" />
@@ -36,7 +36,7 @@ const InitialStep = ({ onNext, onSkip }) => (
 
 InitialStep.propTypes = {
   onNext: PropTypes.func.isRequired,
-  onSkip: PropTypes.func.isRequired
+  onSkip: PropTypes.func.isRequired,
 };
 
 export default InitialStep;

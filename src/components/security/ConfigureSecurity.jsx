@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 import InitialStep from './InitialStep';
 import BvnStep from './BvnStep';
 import SuccessStep from './SuccessStep';
 
-const ConfigureSecurity = () => {
+const ConfigureSecurity = ({ onSkip, onComplete }) => {
   const [step, setStep] = useState(1);
   const [bvn, setBvn] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const validateBvn = (value) => {
-    return /^\d{11}$/.test(value);
-  };
+  const validateBvn = (value) => /^\d{11}$/.test(value);
 
   const handleBvnChange = (e) => {
     const value = e.target.value.replace(/\D/g, '').slice(0, 11);
@@ -48,7 +47,7 @@ const ConfigureSecurity = () => {
         return (
           <InitialStep
             onNext={() => setStep(2)}
-            onSkip={() => setStep(2)}
+            onSkip={onSkip} // Notify parent to load Dashboard
           />
         );
       case 2:
@@ -64,7 +63,7 @@ const ConfigureSecurity = () => {
       case 3:
         return (
           <SuccessStep
-            onComplete={() => {/* Handle completion */}}
+            onComplete={onComplete} // Notify parent of completion
           />
         );
       default:
@@ -82,6 +81,11 @@ const ConfigureSecurity = () => {
       </div>
     </div>
   );
+};
+
+ConfigureSecurity.propTypes = {
+  onSkip: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
 };
 
 export default ConfigureSecurity;

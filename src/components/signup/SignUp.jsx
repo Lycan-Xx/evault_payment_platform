@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState } from 'react';
 import { UserPlus, Mail, Check } from 'lucide-react';
 import StepIndicator from './StepIndicator';
@@ -108,18 +112,27 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
     }
   };
 
-  const handleBackButton = () => {
-    setTransition(true);
-    setTimeout(() => {
-      setFormData(prev => ({ ...prev, step: prev.step - 1 }));
-      setTransition(false);
-    }, 500);
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
   };
+
+  // Within the DataInputStep component
+const handleBackButton = () => {
+  if (formData.step === 1) {
+    onBack();
+  } else {
+    setTransition(true);
+    setTimeout(() => {
+      setFormData(prev => ({ ...prev, step: prev.step - 1 }));
+      setTransition(false);
+    }, 500);
+  }
+};
+
+
 
   return (
     <div>
@@ -312,14 +325,14 @@ function DataInputStep({ accountType, onSubmit, onBack }) {
 
             <input
               type="email"
-			  name="email"
-			  placeholder="Email Address"
-			  value={formData.email}
-			  onChange={handleChange}
+        name="email"
+        placeholder="Email Address"
+        value={formData.email}
+        onChange={handleChange}
         className="w-full px-4 py-2 border border-gray-400 rounded-lg"
-			  required
+        required
              />
-			 <p className="text-red-500">{errors.email}</p>
+       <p className="text-red-500">{errors.email}</p>
 
             <input
               type="text"
@@ -378,13 +391,13 @@ function SuccessStep({ accountType }) {
       <p className="text-gray-600 text-xl text-nowrap">
         Your {accountType} account has been successfully created.
       </p>
-	  <br />
-	  <p className='text-gray-600 text-xl'>
-		Sign in to access your account.
-	  </p>
+    <br />
+    <p className='text-gray-600 text-xl'>
+    Sign in to access your account.
+    </p>
       <button
                 className="w-1/4 px-4 py-2 mt-8 bg-[#025798] hover:bg-white text-white hover:text-[#025798] transition duration-300 border-2 border-[#025798] text-[1.2rem] rounded-lg ease-linear"
-				onClick={() => window.location.reload()}
+        onClick={() => window.location.reload()}
       >
         Sign In
       </button>
@@ -392,9 +405,19 @@ function SuccessStep({ accountType }) {
   );
 }
 
+
+
+
+
+
+
+
+
 // Main SignUp Component
-export default function SignUp() {
-  const Steps = {
+export default function SignUp({ onCancel }) {
+
+
+    const Steps = {
     ACCOUNT_TYPE: 1,
     DATA_INPUT: 2,
     SUCCESS: 3,
@@ -430,40 +453,33 @@ export default function SignUp() {
     setCurrentStep(Steps.SUCCESS);
   };
 
-  const handleBack = () => {
-    if (currentStep === Steps.DATA_INPUT) {
-      setCurrentStep(Steps.ACCOUNT_TYPE);
-    }
-  };
+ 
+  // ... existing code
 
   return (
-    <div className="bg-white w-full max-w-[36rem] rounded-2xl shadow-2xl p-14 mx-auto mt-10">
+    <div className="bg-white w-full max-w-[36rem] rounded-2xl shadow-2xl p-14 mx-auto mt-10 transition-opacity duration-500">
       <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Create Your Account
       </h2>
 
       {/* Conditional Step Indicator */}
       {accountType && (
-        <StepIndicator 
-          currentStep={currentStep} 
-          steps={stepDefinitions} 
-        />
+        <StepIndicator currentStep={currentStep} steps={stepDefinitions} />
       )}
 
-      {/* Content Sections */}
       <div className="mt-6">
         {currentStep === Steps.ACCOUNT_TYPE && (
           <AccountTypeStep onSelect={handleAccountTypeSelect} />
         )}
         {currentStep === Steps.DATA_INPUT && (
-          <DataInputStep 
+          <DataInputStep
             accountType={accountType}
             onSubmit={handleDataSubmit}
-            onBack={handleBack}
+            onBack={() => onCancel()}
           />
         )}
         {currentStep === Steps.SUCCESS && (
-          <SuccessStep accountType={accountType} />
+          <SuccessStep accountType={accountType} onSignIn={() => onCancel()} />
         )}
       </div>
     </div>
