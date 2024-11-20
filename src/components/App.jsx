@@ -4,6 +4,7 @@ import { MessageCircle, Headphones } from 'lucide-react';
 import Navbar from './Navbar';
 import Slider from './Slider';
 import InstantPayments from './InstantPayments';
+import InstantPaymentBusiness from './InstantPaymentBusiness';
 import SignUp from './signup/SignUp';
 import SignIn from './signin/SignIn';
 import ConfigureSecurity from './security/ConfigureSecurity';
@@ -25,32 +26,9 @@ function App() {
     }, 500);
   };
 
-  const renderRightColumn = (view) => {
-    switch (view) {
-      case 'configure-security':
-        return (
-          <ConfigureSecurity
-            onSkip={() => handleNavigation('dashboard')}
-            onComplete={() => handleNavigation('dashboard')}
-          />
-        );
-      case 'sign-in':
-        return (
-          <SignIn
-            onContinue={() => handleNavigation('configure-security')}
-            onSignUp={() => handleNavigation('sign-up')}
-          />
-        );
-      case 'sign-up':
-        return <SignUp onCancel={() => handleNavigation('instant-payments')} />;
-      default:
-        return <InstantPayments />;
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col transition-opacity duration-500">
-      {currentView !== 'dashboard' && (
+      {currentView !== 'dashboard' && currentView !== 'instant-payment-business' && (
         <>
           <Navbar onNavigate={handleNavigation} currentView={currentView} />
 
@@ -65,12 +43,33 @@ function App() {
             </div>
 
             <div className="relative w-full h-full">
-  {transitions((style, item) => (
-    <animated.div style={{ ...style, position: 'absolute', width: '100%', height: '100%' }}>
-      {renderRightColumn(item)}
-    </animated.div>
-  ))}
-</div>
+              {transitions((style, item) => (
+                <animated.div style={{ ...style, position: 'absolute', width: '100%', height: '100%' }}>
+                  {item === 'configure-security' && (
+                    <ConfigureSecurity
+                      onSkip={() => handleNavigation('dashboard')}
+                      onComplete={() => handleNavigation('dashboard')}
+                    />
+                  )}
+                  {item === 'sign-in' && (
+                    <SignIn
+                      onContinue={() => handleNavigation('configure-security')}
+                      onSignUp={() => handleNavigation('sign-up')}
+                    />
+                  )}
+                  {item === 'sign-up' && <SignUp onCancel={() => handleNavigation('instant-payments')} />}
+                  {item === 'instant-payments' && (
+                    <InstantPayments
+                      onServiceClick={(service) => {
+                        if (service === 'Instant Payments') {
+                          handleNavigation('instant-payment-business');
+                        }
+                      }}
+                    />
+                  )}
+                </animated.div>
+              ))}
+            </div>
           </main>
 
           <footer className="bg-[#2B7A9E] text-white py-4">
@@ -91,6 +90,9 @@ function App() {
         </>
       )}
 
+      {currentView === 'instant-payment-business' && (
+        <InstantPaymentBusiness onNavigate={handleNavigation} />
+      )}
       {currentView === 'dashboard' && <Dashboard />}
     </div>
   );
