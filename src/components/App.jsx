@@ -9,6 +9,7 @@ import SignUp from './signup/SignUp';
 import SignIn from './signin/SignIn';
 import ConfigureSecurity from './security/ConfigureSecurity';
 import Dashboard from './Dashboard/Dashboard';
+import Footer from './Footer';
 
 function App() {
   const [currentView, setCurrentView] = useState('instant-payments');
@@ -72,12 +73,7 @@ function App() {
             </div>
           </main>
 
-          <footer className="bg-[#2B7A9E] text-white py-4">
-            <div className="container mx-auto px-4 text-center text-base">
-              <p>Copyrights @ evault 2024</p>
-              <p>No 29 Atiku abubakar mall, adamawa state</p>
-            </div>
-          </footer>
+        <Footer/>
 
           <div className="fixed bottom-6 right-6 flex flex-col gap-4">
             <button className="bg-[#2B7A9E] text-white p-3 rounded-full shadow-lg hover:bg-opacity-90 transition">
