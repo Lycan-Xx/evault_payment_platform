@@ -5,7 +5,7 @@ import SecurityStep from './SecurityStep';
 
 const BvnStep = ({ bvn, error, isLoading, onChange, onVerify }) => (
   <SecurityStep>
-    <div className="w-32 h-32 text-[#2B7A9E]">
+    <div className="w-32 h-32 text-[#025798]">
       <Fingerprint className="w-full h-full" />
     </div>
     <div className="text-center space-y-4">
@@ -33,10 +33,11 @@ const BvnStep = ({ bvn, error, isLoading, onChange, onVerify }) => (
       <button
         onClick={onVerify}
         disabled={isLoading || bvn.length !== 11}
-        className={`w-full py-3 ${
+        className={`left w-1/2 py-[0.75rem] ${
           isLoading || bvn.length !== 11
-            ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-[#2B7A9E] hover:bg-[#236785]'
+            ? 'bg-gray-400 cursor-not-allowed px-6 py-2 rounded-xl  text-[1.2rem]'
+            : "bg-[#025798] text-white  px-6 py-2 rounded-xl text-[1.2rem] border-[1.5px] border-[#025798] hover:bg-white hover:text-[#025798] transition duration-400 ease-in"
+
         } text-white rounded-lg transition-colors flex items-center justify-center gap-2`}
       >
         {isLoading ? (

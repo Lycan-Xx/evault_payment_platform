@@ -120,7 +120,7 @@ const Navbar = ({ onNavigate, currentView }) => {
           aria-labelledby="download-dialog-title"
           aria-describedby="download-dialog-description"
         >
-          <div className="relative w-11/12 max-w-md p-6 bg-[#04448c] []:bg-gray-800 rounded-2xl shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 dark:shadow-lg dark:shadow-blue-500/50">
+          <div className="relative w-11/12 max-w-md p-6 bg-[#04448c] [dark]:bg-white-800 rounded-2xl shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 dark:shadow-lg dark:shadow-blue-500/50">
             {/* Close Button */}
             <button
               onClick={() => setIsDialogOpen(false)}

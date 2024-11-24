@@ -13,8 +13,8 @@ const SuccessStep = ({ onComplete }) => (
     </div>
     <button
       onClick={onComplete}
-      className="px-8 py-3 bg-[#2B7A9E] text-white rounded-lg hover:bg-[#236785] transition-colors"
-    >
+      className="bg-white text-[#025798] px-6 py-2 rounded-xl text-[1.2rem] hover:bg-[#025798] hover:text-white border-[1.5px] border-[#025798] transition duration-700"
+      >
       Continue
     </button>
   </SecurityStep>

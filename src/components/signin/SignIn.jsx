@@ -4,7 +4,7 @@ import { Eye, EyeOff, Mail } from 'lucide-react';
 function SuccessStep({ onContinue }) {
   return (
     <div className="text-center">
-      <Mail className="mx-auto mb-4 text-green-500" size={64} />
+      <Mail className="mx-auto mb-4 text-[#025798]" size={64} />
       <h3 className="text-2xl font-bold mb-2">Login Successful!</h3>
       <p className="text-gray-600">
         You have successfully signed in to your account.
@@ -12,8 +12,8 @@ function SuccessStep({ onContinue }) {
       <div className='pt-8'>
         <button
           onClick={onContinue}
-          className="px-4 py-3 bg-[#2B7A9E] text-white rounded-lg hover:bg-[#236785] transition-colors"
-        >
+          className="bg-[#025798] text-white px-6 py-2 rounded-xl text-[1.2rem] border-[1.5px] border-[#025798] hover:bg-white hover:text-[#025798] transition duration-400 ease-in"
+          >
           Continue
         </button>
       </div>

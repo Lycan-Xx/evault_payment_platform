@@ -19,17 +19,18 @@ const InitialStep = ({ onNext, onSkip }) => (
     <div className="flex justify-between w-full mt-8">
       <button
         onClick={() => onSkip()} // Ensure this calls the onSkip prop
-        className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+        className="px-6 py-2 text-gray-600 hover:text-[#025798] border rounded-xl transition-colors"
       >
         Skip for now
       </button>
       <button
-        onClick={() => onNext()} // Ensure this calls the onNext prop
-        className="px-6 py-2 bg-[#2B7A9E] text-white rounded-lg hover:bg-[#236785] transition-colors flex items-center gap-2"
-      >
-        <Shield className="w-4 h-4" />
-        Get Started
-      </button>
+  onClick={() => onNext()} // Ensure this calls the onNext prop
+  className='flex items-center w-auto px-4 py-3 ml-6 rounded-lg whitespace-nowrap bg-white border-2 border-[#025798] text-lg hover:text-white hover:bg-[#025798] transition duration-300 ease-linear'
+>
+  <Shield className="w-4 h-4 mr-2" /> {/* Add margin to the right for spacing */}
+  Get Started
+</button>
+
     </div>
   </SecurityStep>
 );
