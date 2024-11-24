@@ -1,66 +1,91 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { FaPhone, FaEnvelope, FaMapMarker } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1A1A1A] text-white py-12 px-4 h-18">
-      <div className="container mx-auto max-w-6xl">
-        {/* Logo/Brand Section */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold tracking-wider">eVault</h2>
-        </div>
+    <footer className="bg-[#025798] text-white py-6 flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+      {/* Left Section: Logo and Tagline */}
+      <div className="flex flex-col pl-4 mb-4 md:mb-0">
+		<div className="space-x-2 mb-8">
+        <a href="#" className="text-2xl font-bold tracking-wider hover:underline">
+          eVault
+        </a>
+        <span className="text-sm font-mono text-gray-300 mt-2">Powered by Bellbank</span>
+		</div>
 
-        
-        {/* Social Media Icons */}
-        <div className="flex justify-center mb-8 space-x-6">
-          <a 
-            href="https://www.facebook.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-[#2B7A9E] transition-colors"
-          >
-            <FontAwesomeIcon icon={faFacebook} size="2x" />
-          </a>
-          <a 
-            href="https://twitter.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-[#2B7A9E] transition-colors"
-          >
-            <FontAwesomeIcon icon={faTwitter} size="2x" />
-          </a>
-          <a 
-            href="https://www.instagram.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-[#2B7A9E] transition-colors"
-          >
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
-          </a>
-        </div>
-
-        {/* Contact and Legal Links */}
-        <div className="text-center mb-8 space-y-4">
-          <div className="space-x-4">
-            <a href="/privacy-policy" className="hover:text-[#2B7A9E] transition-colors">Privacy Policy</a>
-            <span className="text-gray-500">|</span>
-            <a href="/terms-and-conditions" className="hover:text-[#2B7A9E] transition-colors">Terms and Conditions</a>
-            <span className="text-gray-500">|</span>
-            <a href="https://www.bellbank.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#2B7A9E] transition-colors">
-              Powered by Bellbank
+        {/* Contact */}
+        <ul className="space-y-1 text-gray-300">
+          <li>
+            <a href="tel:+234000000000" className="flex text-[0.75rem] items-center hover:text-[#2B7A9E] transition-colors">
+              <FaPhone className="mr-1" aria-hidden="true" /> +234 000000000
             </a>
-          </div>
-          <div>
-            <p>Contact: <a href="mailto:support@evault.com" className="hover:text-[#2B7A9E] transition-colors">support@evault.com</a></p>
-            <p>Phone: <span className="hover:text-[#2B7A9E] transition-colors">123-456-7890</span></p>
-          </div>
+          </li>
+          <li>
+            <a href="mailto:support@evault.com.ng" className="flex text-sm items-center hover:text-[#2B7A9E] transition-colors">
+              <FaEnvelope className="mr-1" aria-hidden="true" /> support@evault.com.ng
+            </a>
+          </li>
+          <li className="flex items-center">
+            <FaMapMarker className="mr-1 text-sm" aria-hidden="true" /> No 29 Atiku Abubakar Mall, Numan road, Adamawa State, NG
+          </li>
+        </ul>
+      </div>
+
+      {/* Center Section: Social Icons and Copyright */}
+      <div className="flex flex-col items-center space-y-1">
+        <div className="flex space-x-4 mb-2">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#2B7A9E] transition-colors"
+            aria-label="Facebook"
+          >
+            <FontAwesomeIcon icon={faFacebook} size="lg" />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#2B7A9E] transition-colors"
+            aria-label="Twitter"
+          >
+            <FontAwesomeIcon icon={faTwitter} size="lg" />
+          </a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-[#2B7A9E] transition-colors"
+            aria-label="Instagram"
+          >
+            <FontAwesomeIcon icon={faInstagram} size="lg" />
+          </a>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center text-gray-400 text-sm">
-          <p>Copyright © 2024 Evault. All rights reserved</p>
-        </div>
+        <p className="text-sm text-gray-400">
+          © 2024 - eVault. All rights reserved.
+        </p>
+      </div>
+
+      {/* Right Section: Privacy Policy and Terms */}
+      <div className="pr-4 text-sm space-x-4">
+        <a
+          href="/privacy-policy"
+          className="hover:text-[#2B7A9E] transition-colors"
+          aria-label="Privacy Policy"
+        >
+          Privacy Policy
+        </a>
+        <a
+          href="/terms-and-conditions"
+          className="hover:text-[#2B7A9E] transition-colors"
+          aria-label="Terms and Conditions"
+        >
+          Terms and Conditions
+        </a>
       </div>
     </footer>
   );

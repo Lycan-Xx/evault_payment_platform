@@ -114,29 +114,75 @@ const Navbar = ({ onNavigate, currentView }) => {
 
       {/* Dialog Popup */}
       {isDialogOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-md text-center">
-            <h2 className="text-xl font-semibold mb-4 text-[#025798]">Choose Your Platform</h2>
-            <div className="flex justify-around">
-              <a
-                href="#"
-                className="bg-[#34A853] text-white px-6 py-3 rounded-lg text-lg hover:bg-green-700"
-              >
-                Android
-              </a>
-              <a
-                href="#"
-                className="bg-[#007AFF] text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-800"
-              >
-                iOS
-              </a>
-            </div>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+          role="dialog"
+          aria-labelledby="download-dialog-title"
+          aria-describedby="download-dialog-description"
+        >
+          <div className="relative w-11/12 max-w-md p-6 bg-[#04448c] []:bg-gray-800 rounded-2xl shadow-2xl transform transition-all duration-300 ease-in-out hover:scale-105 dark:shadow-lg dark:shadow-blue-500/50">
+            {/* Close Button */}
             <button
-              className="mt-4 text-[#025798] hover:underline"
               onClick={() => setIsDialogOpen(false)}
+              className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors"
             >
-              Close
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
+
+            {/* Modal Content */}
+            <div className="text-center">
+              <h2 id="download-dialog-title" className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+                Download Our App
+              </h2>
+              <p id="download-dialog-description" className="text-gray-600 dark:text-gray-300 mb-6">
+                In an instant send support, feed a passion, or strengthen a bond
+              </p>
+
+              {/* Download Buttons */}
+              <div className="flex justify-center space-x-4 mt-4">
+  {/* App Store Button */}
+  <a
+    href="#"
+    className="flex items-center bg-[#04448c] text-white px-4 py-2 rounded-lg shadow hover:bg-gray-800 transition-colors dark:bg-gray-700 dark:hover:bg-gray-600"
+  >
+    <img
+      src="https://cdn.icon-icons.com/icons2/56/PNG/512/meter_macappstore_11408.png"
+      alt="App Store"
+      className="w-5 h-5 mr-2"
+    />
+    <span className="text-sm font-medium">App Store</span>
+  </a>
+
+  {/* Google Play Button */}
+  <a
+    href="#"
+    className="flex items-center bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition-colors dark:bg-green-700 dark:hover:bg-green-600"
+  >
+    <img
+      src="https://cdn.icon-icons.com/icons2/2699/PNG/512/google_play_tile_logo_icon_168147.png"
+      alt="Google Play"
+      className="w-5 h-5 mr-2"
+    />
+    <span className="text-sm font-medium">Google Play</span>
+  </a>
+</div>
+
+              {/* QR Code Section */}
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  Or scan the QR code to download
+                </p>
+                <div className="flex justify-center">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com"
+                    alt="QR Code"
+                    className="w-32 h-32"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
