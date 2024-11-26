@@ -11,9 +11,9 @@ const Navbar = ({ onNavigate, currentView }) => {
       <div className="container mx-auto flex items-center justify-between h-[7rem] px-4">
         {/* Logo Section */}
         <div className="flex items-center">
-          <img src={logo} alt="logo" className="h-[7rem] w-auto" />
+          <a href=""><img src={logo} alt="logo" className="h-[7rem] w-auto" /></a>
           <span className="hidden lg:block text-[2rem] lg:text-[3rem] font-bold text-[#025798] ml-0 mt-[3.7rem]">
-            Vault
+           <a href=""> Vault</a>
           </span>
         </div>
 

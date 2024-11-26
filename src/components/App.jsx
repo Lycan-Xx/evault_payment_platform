@@ -36,61 +36,67 @@ function App() {
 
           {/* Main Content */}
           <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 py-12 relative z-10">
-            <div className="block items-center justify-start pl-8 lg:pl-16 pt-[120px]">
-              <div className="flex space-x-6 mb-24 mt-8">
-                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">
-                  Banking
-                </p>
-                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">
-                  Payments
-                </p>
-                <p className="text-gray-600 hover:text-[#2B7A9E] text-2xl font-bold">
-                  Vault
-                </p>
-              </div>
-              <Slider />
-            </div>
+  {/* Left Section */}
+  <div className="flex flex-col items-center justify-center pl-8 lg:pl-16">
+    {/* Navigation Links */}
+    <div className="flex space-x-6 mb-12">
+      <p className="text-gray-600 hover:text-[#025798] text-2xl font-bold">
+        Banking
+      </p>
+      <p className="text-gray-600 hover:text-[#025798] text-2xl font-bold">
+        Payments
+      </p>
+      <p className="text-gray-600 hover:text-[#025798] text-2xl font-bold">
+        Vault
+      </p>
+    </div>
+    {/* Slider */}
+    <Slider />
+  </div>
 
-            <div className="relative w-full h-full">
-              {transitions((style, item) => (
-                <animated.div
-                  style={{
-                    ...style,
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  {item === "configure-security" && (
-                    <ConfigureSecurity
-                      onSkip={() => handleNavigation("dashboard")}
-                      onComplete={() => handleNavigation("dashboard")}
-                    />
-                  )}
-                  {item === "sign-in" && (
-                    <SignIn
-                      onContinue={() => handleNavigation("configure-security")}
-                      onSignUp={() => handleNavigation("sign-up")}
-                    />
-                  )}
-                  {item === "sign-up" && (
-                    <SignUp
-                      onCancel={() => handleNavigation("instant-payments")}
-                    />
-                  )}
-                  {item === "instant-payments" && (
-                    <InstantPayments
-                      onServiceClick={(service) => {
-                        if (service === "Instant Payments") {
-                          handleNavigation("instant-payment-business");
-                        }
-                      }}
-                    />
-                  )}
-                </animated.div>
-              ))}
-            </div>
-          </main>
+  {/* Right Section */}
+  <div className="flex items-center justify-center relative w-full h-full">
+    {transitions((style, item) => (
+      <animated.div
+        style={{
+          ...style,
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+        }}
+        className="flex flex-col items-center justify-center"
+      >
+        {item === "configure-security" && (
+          <ConfigureSecurity
+            onSkip={() => handleNavigation("dashboard")}
+            onComplete={() => handleNavigation("dashboard")}
+          />
+        )}
+        {item === "sign-in" && (
+          <SignIn
+            onContinue={() => handleNavigation("configure-security")}
+            onSignUp={() => handleNavigation("sign-up")}
+          />
+        )}
+        {item === "sign-up" && (
+          <SignUp
+            onCancel={() => handleNavigation("instant-payments")}
+          />
+        )}
+        {item === "instant-payments" && (
+          <InstantPayments
+            onServiceClick={(service) => {
+              if (service === "Instant Payments") {
+                handleNavigation("instant-payment-business");
+              }
+            }}
+          />
+        )}
+      </animated.div>
+    ))}
+  </div>
+</main>
+
 
           {/* Footer */}
 

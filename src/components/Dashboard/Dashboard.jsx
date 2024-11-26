@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from '../assets/logo.jpg';
+import logo from "../assets/logo.jpg";
 import {
   Wallet,
   CreditCard,
@@ -16,28 +16,52 @@ import {
   User,
   SatelliteDishIcon,
   Menu,
-  ArrowRightLeft, // Transfer icon
-  Layers, // Withdraw icon
-  History, // History icon
+  ArrowRightLeft,
+  Layers,
+  History,
   Mail,
 } from "lucide-react";
 
 export default function Dashboard() {
-  const [selectedTab, setSelectedTab] = useState(null);
+  const [selectedTab, setSelectedTab] = useState("Home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+
+  const services = [
+    { title: "Instant Payment", description: "Pay instantly", icon: Wallet },
+    { title: "Airtime Recharge", description: "Top up airtime", icon: PhoneCall },
+    { title: "Data Bundles", description: "Purchase data", icon: Globe },
+    { title: "School Fees Payment", description: "Pay school fees", icon: Building },
+    { title: "Remita Payments", description: "Remita services", icon: Receipt },
+    { title: "Cable Subscriptions", description: "Subscribe to cable", icon: SatelliteDishIcon },
+    { title: "Transport Bookings", description: "Book transportation", icon: Train },
+  ];
+  
+  const toggleTab = (tab) => {
+    setSelectedTab(selectedTab === tab ? null : tab);
+  };
 
   const cardData = [
     {
       name: "Wema Bank",
       balance: "₦2,500.98",
+      cardNumber: "**** **** **** 1234",
+      expiry: "05/26",
+      cardholder: "John Doe",
     },
     {
       name: "Monie Point",
       balance: "₦0.00",
+      cardNumber: "**** **** **** 5678",
+      expiry: "06/26",
+      cardholder: "Jane Doe",
     },
     {
       name: "Zenith Bank",
       balance: "₦0.00",
+      cardNumber: "**** **** **** 9101",
+      expiry: "07/26",
+      cardholder: "Alex Smith",
     },
   ];
 
@@ -119,54 +143,60 @@ export default function Dashboard() {
           </form>
         );
       default:
-        return null;
+        return (
+          <div>
+            <h4 className="text-xl font-bold text-blue-600 mb-4">
+              Welcome to eVault Dashboard!
+            </h4>
+            <p className="text-gray-700">
+              Here you can manage your accounts, transfer funds, and access
+              services.
+            </p>
+          </div>
+        );
     }
   };
 
-  const services = [
-    { title: "Instant Payment", description: "Pay instantly", icon: Wallet },
-    { title: "Airtime Recharge", description: "Top up airtime", icon: PhoneCall },
-    { title: "Data Bundles", description: "Purchase data", icon: Globe },
-    { title: "School Fees Payment", description: "Pay school fees", icon: Building },
-    { title: "Remita Payments", description: "Remita services", icon: Receipt },
-    { title: "Cable Subscriptions", description: "Subscribe to cable", icon: SatelliteDishIcon },
-    { title: "Transport Bookings", description: "Book transportation", icon: Train },
-  ];
-
-  const toggleTab = (tab) => {
-    setSelectedTab(selectedTab === tab ? null : tab);
-  };
-
   return (
-    <div className="bg-blue-800 bg-opacity-85 min-h-full h-[24rem] rounded-ee-2xl flex flex-col md:flex-row">
-
+    <div className="bg-blue-800 min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className={`w-64 bg-white shadow-md p-6 ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
-        <div className="mb-10">
-          <div className="flex items-center">
-
-				<img src={logo} alt="logo" className="w-[5rem] h-[5rem] mb-2 mr-3" />
-				
-            <h2 className="text-3xl font-bold text-[#025798] mt-4">eVault</h2>
-          </div>
-          <div className="mt-6">
-            <img
-              src="https://picsum.photos/id/237/200/300"
-              alt="User Avatar"
-              className="rounded-full w-[7rem] h-[7rem]"
-            />
-            <h3 className="text-lg font-bold mt-2">Usman Ahmad</h3>
-            <p className="text-gray-600 text-sm">Customer (User)</p>
-          </div>
+      <div
+        className={`bg-white shadow-md w-64 p-6 transition duration-500 ${
+          isSidebarOpen ? "block" : "hidden"
+        } md:block`}
+      >
+        <div className="flex items-center mb-6">
+          <img src={logo} alt="logo" className="w-12 h-12 mr-2" />
+          <h2 className="text-2xl font-bold text-blue-600">eVault</h2>
+        </div>
+        <div className="mb-6 text-center">
+          <img
+            src="https://picsum.photos/id/237/200/300"
+            alt="User Avatar"
+            className="rounded-full w-20 h-20 mx-auto"
+          />
+          <h3 className="text-lg font-bold mt-2">Usman Ahmad</h3>
+          <p className="text-gray-600 text-sm">Customer (User)</p>
         </div>
         <nav className="space-y-4">
-          {["Home", "Trade", "Vault", "Settings", "Customers"].map((item) => (
-            <div
-              key={item}
-              className="flex items-center p-3 hover:bg-blue-50 rounded-lg cursor-pointer"
+          {[
+            { name: "Home", icon: User },
+            { name: "Transfer", icon: ArrowRightLeft },
+            { name: "Withdraw", icon: Layers },
+            { name: "History", icon: History },
+          ].map((tab) => (
+            <button
+              key={tab.name}
+              onClick={() => setSelectedTab(tab.name)}
+              className={`flex items-center p-3 rounded-md w-full transition duration-300 ${
+                selectedTab === tab.name
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-700 hover:bg-blue-50"
+              }`}
             >
-              <span className="text-gray-700">{item}</span>
-            </div>
+              <tab.icon className="mr-3" />
+              {tab.name}
+            </button>
           ))}
         </nav>
         <button className="absolute bottom-6 left-6 bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">
@@ -174,22 +204,19 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* Hamburger Menu Button */}
+      {/* Hamburger Menu */}
       <button
         className="p-4 md:hidden"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
-        <Menu className="text-gray-700" size={30} />
+        <Menu className="text-white" size={30} />
       </button>
 
       {/* Main Content */}
-      <div className="flex-1 p-4 md:p-8">
-
+      <div className="flex-1 p-6">
         {/* Top Bar */}
         <div className="flex justify-between items-center mb-6">
-          <div className="text-white text-xl font-bold">
-            Wallet Balance: ₦2,500.98
-          </div>
+          <div className="text-white text-xl font-bold">Wallet Balance: ₦2,500.98</div>
           <div className="flex space-x-4">
             <Bell className="text-white hover:text-blue-600 cursor-pointer" size={24} />
             <Mail className="text-white hover:text-blue-600 cursor-pointer" size={24} />
@@ -201,37 +228,27 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <p className="text-xl font-bold text-white mb-8">Evault Dashboard</p>
-
-        {/* Wallet Cards */}
+        {/* Payment Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {cardData.map((card, index) => (
             <div
               key={index}
               className="rounded-lg p-4 text-white"
               style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0.5)), url('https://picsum.photos/200?random=${index}')`,
-                backgroundSize: 'cover',
+                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 255, 0.7), rgba(0, 0, 255, 0.6)), url('https://picsum.photos/200?random=${index}')`,
+                backgroundSize: "cover",
               }}
             >
-              <div className="flex justify-between items-center mb-4">
-                <div>
-                  <p className="text-sm font-semibold">Expires</p>
-                  <p className="text-lg font-bold">05/26</p>
-                </div>
-              </div>
-              <div className="text-center">
-                <p className="text-sm font-semibold">Cardholder Name</p>
-                <p className="text-lg font-bold">John Doe</p>
-              </div>
-              <div className="text-right mt-4">
-                <p className="text-sm font-semibold">Card Number</p>
-                <p className="text-lg font-bold">**** **** **** 1234</p>
-              </div>
+              <h4 className="text-lg font-bold">{card.name}</h4>
+              <p className="text-sm">Balance: {card.balance}</p>
+              <p className="text-sm">Card Number: {card.cardNumber}</p>
+              <p className="text-sm">Expiry: {card.expiry}</p>
+              <p className="text-sm">Cardholder: {card.cardholder}</p>
             </div>
           ))}
         </div>
 
+        {/* Tab Content */}
         {/* Radio Tabs Navigation */}
         <div className="bg-white rounded-xl p-6 shadow-md mb-6">
           <div className="flex justify-around mb-4">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 
 const InstantPaymentBusiness = ({ onNavigate }) => {
@@ -6,7 +6,23 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [subType, setSubType] = useState('');
   const [formData, setFormData] = useState({});
-  const [paymentMethod, setPaymentMethod] = useState('card'); // New state for payment method
+  const [paymentMethod, setPaymentMethod] = useState('card'); // Default payment method
+  const [randomImage, setRandomImage] = useState('');
+
+  // Fetch a random image when the component loads
+  useEffect(() => {
+    const fetchRandomImage = async () => {
+      const images = [
+        'https://picsum.photos/400/300?random=1',
+        'https://picsum.photos/400/300?random=2',
+        'https://picsum.photos/400/300?random=3',
+      ];      
+      const randomIndex = Math.floor(Math.random() * images.length);
+      setRandomImage(images[randomIndex]);
+    };
+
+    fetchRandomImage();
+  }, []);
 
   const handlePaymentTypeChange = (e) => {
     setPaymentType(e.target.value);
@@ -20,9 +36,9 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -35,45 +51,48 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
     switch (paymentType) {
       case 'electricity':
         return subType ? (
-          <div className="bg-white shadow-lg rounded-xl p-6">
+            
+           <div className="bg-white shadow-lg rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-4 text-blue-600">Electricity Payment Details</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Meter/Bill Number</label>
-                  <input
-                    type="text"
-                    name="meterNumber"
-                    value={formData.meterNumber || ''}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
-                    placeholder="Enter Meter/Bill Number"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Name of Payee</label>
-                  <input
-                    type="text"
-                    name="payeeName"
-                    value={formData.payeeName || ''}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
-                    placeholder="Enter Name of Payee"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber || ''}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
-                    placeholder="Enter Phone Number"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4">
+
+
+              <label className="block text-sm font-medium text-gray-700 mb-2">Meter/Bill Number</label>
+              <input
+                type="text"
+                name="meterNumber"
+                value={formData.meterNumber || ''}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
+                placeholder="Enter Meter/Bill Number"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Name of Payee</label>
+              <input
+                type="text"
+                name="payeeName"
+                value={formData.payeeName || ''}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
+                placeholder="Enter Name of Payee"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber || ''}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 transition duration-300"
+                placeholder="Enter Phone Number"
+              />
+            </div>
+          </div>
+       <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email (Optional)</label>
                   <input
@@ -230,16 +249,18 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <Navbar onNavigate={onNavigate} currentView="instant-payments" />
-
       <div className="flex flex-col lg:flex-row flex-1">
-        <div className="w-full lg:w-1/2 p-8 bg-white lg:order-first">
-          <h2 className="text-2xl font-bold">Left Column</h2>
+        {/* Left section with the random image */}
+        <div className="w-full lg:w-1/2 p-8 bg-gray-200 flex items-center justify-center">
+          <img src={randomImage} alt="Random" className="max-w-full max-h-full rounded-xl shadow-lg" />
         </div>
 
-        <div className="w-full lg:w-1/2 p-8 bg-white shadow-lg rounded-xl relative">
-          <h2 className="text-3xl font-bold mb-6 text-blue-700">Payment</h2>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Right section with the payment form */}
+        <div className="w-full lg:w-1/2 p-8 bg-white flex items-center justify-center">
+          <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md">
+            <h2 className="text-3xl font-bold mb-6 text-blue-700 text-center">Payment</h2>
+            <p className='mb-12 text-gray-600'>Try our services for free before <a className='text-xl text-blue-600 font-semibold' href="#">Sign Up</a></p>
+            <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-lg font-semibold mb-2 text-gray-800">What are you paying for?</label>
               <select
@@ -261,7 +282,7 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
                    paymentType === 'school' ? 'School name' :
                    'Select Network'}
                 </label>
-				
+                
                 <select
                   value={subType}
                   onChange={handleSubTypeChange}
@@ -290,20 +311,22 @@ const InstantPaymentBusiness = ({ onNavigate }) => {
               </div>
             )}
 
-            {renderPaymentFields()}
+              {renderPaymentFields()}
 
-            <div className="flex justify-end mt-4">
-              <button
-                type="submit"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300"
-              >
-                Checkout
-              </button>
-            </div>
-          </form>
+              <div className="flex justify-end mt-4">
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300"
+                >
+                  Checkout
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
+      {/* Dialog for confirming payment */}
       {isDialogOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-md">
